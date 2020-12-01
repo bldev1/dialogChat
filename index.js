@@ -10,7 +10,7 @@ app.listen(port, () => { console.log(`🌏 Server is running at http://localhost
 
 
 app.post('/getmovie', (req, res) => { 
-    const movieToSearch = req.body.result.parameters.movie || '';
+    const movieToSearch = req.body.queryResult.parameters.movie || '';
     const reqUrl = encodeURI( `http://www.omdbapi.com/?t=${movieToSearch}&apikey=20173ffa` );
 
     http.get(reqUrl, responseFromAPI => {
