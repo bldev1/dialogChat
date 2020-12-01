@@ -18,7 +18,9 @@ app.post('/getmovie', (req, res) => {
         responseFromAPI.on('end', () => {
             console.log(completeResponse);
             const movie = JSON.parse(completeResponse.replace('[object Object]', ''));
-            return res.json(movie);
+            // return res.json(movie);
+            let dataToSend = `${movie.Title} was released in the year ${movie.Year}. It is directed by ${ movie.Director } and stars ${movie.Actors}.\n Here some glimpse of the plot: ${movie.Plot}. }`;
+            return res.json({ fulfillmentText: dataToSend, source: 'getmovie' })
         })
     }, error => { return res.json({ fulfillmentText: 'Could not get results at this time', source: 'getmovie' }) } )
 })
